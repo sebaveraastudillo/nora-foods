@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="container">
+    <div style="padding-top:50px; text-align:center;">
+        <div class="row">
+            <div class="col-10">
+                <h1 class="text-left">Crear Opción</h1>
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+    </div>
+
+    <form>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6">
+                    <label">Nombre</label>
+                    <input type="text" class="form-control" id="date" placeholder="Ingrese el nombre de la opción, Ej: Arroz con pollo">
+                </div>
+            </div>
+            
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+</div>
+
+<script type="text/javascript"> 
+    $(document).ready(function(e){
+        $('.select2').select2({width: "100%"});
+        $('.datepicker').datepicker();
+    });
+</script>
+
+{% endblock %}

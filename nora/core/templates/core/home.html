@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="container">
+  <div style="padding-top:50px; text-align:center;">
+    <div class="row">
+      <div class="col-10">
+         <h1 class="text-left">Menus</h1>
+      </div>
+      <div class="col-2">
+        <a href="{% url 'createMenu' %}" class="btn btn-block btn-info" title="Agregar Menú"><i class="fa fa-plus"></i></a>
+      </div>
+    </div>
+   
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-11">
+            <p class="text-left pt-3">Menu 05-08-2019</p>
+          </div>
+          <div class="col-1">
+            <button class="btn btn-block btn-success" title="Editar Menú"><i class="fa fa-pencil"></i></button>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-11">
+            <p class="text-left pt-3">Menu 05-08-2019</p>
+          </div>
+          <div class="col-1">
+            <button class="btn btn-block btn-success" title="Editar Menú"><i class="fa fa-pencil"></i></button>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+      <div class="row">
+          <div class="col-11">
+            <p class="text-left pt-3">Menu 05-08-2019</p>
+          </div>
+          <div class="col-1">
+            <button class="btn btn-block btn-success" title="Editar Menú"><i class="fa fa-pencil"></i></button>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+      <div class="row">
+          <div class="col-11">
+            <p class="text-left pt-3">Menu 05-08-2019</p>
+          </div>
+          <div class="col-1">
+            <button class="btn btn-block btn-success" title="Editar Menú"><i class="fa fa-pencil"></i></button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
