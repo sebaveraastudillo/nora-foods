@@ -18,8 +18,12 @@ from django.urls import path, include
 from django.conf import settings
 
 urlpatterns = [
-    path("", include("core.urls")),
+    path("", include("menu.urls")),
     path('admin/', admin.site.urls),
+
+    #registration
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('registration.urls'))
 ]
 
 if settings.DEBUG:

@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'menu/base.html' %}
 {% load static %}
 {% block title %}Inicio{% endblock %}
 {% block content %}
@@ -13,15 +13,15 @@
         </div>
     </div>
 
-    <form>
+    <form id="option_create" method="POST" action="">
+        {% csrf_token %}
         <div class="form-group">
             <div class="row">
                 <div class="col-6">
                     <label">Nombre</label>
-                    <input type="text" class="form-control" id="date" placeholder="Ingrese el nombre de la opción, Ej: Arroz con pollo">
+                    {{ form.name }}
                 </div>
             </div>
-            
         </div>
         
         <button type="submit" class="btn btn-primary">Enviar</button>

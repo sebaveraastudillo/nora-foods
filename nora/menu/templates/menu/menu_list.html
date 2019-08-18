@@ -1,0 +1,46 @@
+{% extends 'menu/base.html' %}
+{% load static %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="container">
+  <div style="padding-top:50px; text-align:center;">
+    <div class="row">
+      <div class="col-10">
+         <h1 class="text-left">Menus</h1>
+      </div>
+      <div class="col-2">
+        <a href="{% url 'menu_create' %}" class="btn btn-block btn-info" title="Agregar Menú"><i class="fa fa-plus"></i></a>
+      </div>
+    </div>
+
+    {% if menu_list|length == 0 %}
+      <div class="row">
+        <div class="col-12">
+          <div class="alert alert-warning alert-block">No existen menús</div>
+        </div>
+      </div>
+    {% endif %}
+    
+    <ul class="list-group">
+      {% for menu in menu_list %}
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-9">
+            <p class="text-left pt-3">Menu {{ menu.date|date:"d-m-Y" }}</p>
+          </div>
+          <div class="col-1">
+            <a href="{% url 'menu_update' menu.id %}" class="btn btn-block btn-success" title="Editar Menú"><i class="fas fa-pencil-alt"></i></a>
+          </div>
+          <div class="col-1">
+            <a href="{% url 'slack_send' menu.id %}" class="btn btn-block btn-success" title="Enviar Menu a Slack"><i class="fab fa-slack"></i></a>
+          </div>
+          <div class="col-1">
+            <a href="{% url 'orders_menu' menu.id %}" class="btn btn-block btn-success" title="Ver información de pedidos"><i class="fas fa-info-circle"></i></a>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

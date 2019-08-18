@@ -1,0 +1,64 @@
+{% extends 'menu/base.html' %}
+{% load static %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="container">
+    <div style="padding-top:50px; text-align:center;">
+        <div class="row">
+            <div class="col-10">
+                <h1 class="text-left">Generar Pedido</h1>
+            </div>
+        </div>
+    </div>
+    
+    {% if success %}
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-success alert-block">Se generó el pedido con éxito</div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-info alert-block">Si usted no se encuentra en la lista de empleados, debe registrarse <a href="{% url 'signup' %}">aquí</a></div>
+        </div>
+    </div>
+    
+    <form id="create_order" action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="row">
+                <div style="display: none;">
+                {{ form.menu }}
+                </div>
+                <div class="col-12 mb-2">
+                    <label>Opción</label>
+                    {{ form.option }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-2">
+                    <label>Empleado</label>
+                    {{ form.user }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-2">
+                    <label>Personalizaciones</label>
+                    {{ form.customizations }}
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Enviar">
+    </form>
+    {% endif %}
+</div>
+
+<script type="text/javascript"> 
+    $(document).ready(function(e){
+        $('.select2').select2({width: "100%"});
+        
+    });
+</script>
+
+{% endblock %}

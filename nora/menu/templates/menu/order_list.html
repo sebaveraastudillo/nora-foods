@@ -1,0 +1,33 @@
+{% extends 'menu/base.html' %}
+{% load static %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="container">
+  <div style="padding-top:50px; text-align:center;">
+    <div class="row">
+      <div class="col-10">
+         <h1 class="text-left">Pedidos</h1>
+      </div>
+    </div>
+    {% if order_list|length == 0 %}
+      <div class="row">
+        <div class="col-12">
+          <div class="alert alert-warning alert-block">No existen pedidos</div>
+        </div>
+      </div>
+    {% endif %}
+    <ul class="list-group">
+      {% for order in order_list %}
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-12">
+            <p class="text-left pt-3">#{{ order.id }} - {{ order.option.name }} - {{ order.user.username }}</p>
+            <p class="text-left pt-3"><strong>Personalizaciones:</strong> {{order.customizations}}</p>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

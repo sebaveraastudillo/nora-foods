@@ -31,16 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
     'menu',
-    'options',
-    'employees'
 ]
 
 MIDDLEWARE = [
@@ -107,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -126,3 +124,9 @@ STATIC_URL = '/static/'
 # media files
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+SLACK_TOKEN='xoxp-728764217476-729226154192-729227634720-738190b28f7a40c36bceb9ddc736ccec'
+
+#login
+LOGIN_REDIRECT_URL='/'
+LOGOUT_REDIRECT_URL='/'

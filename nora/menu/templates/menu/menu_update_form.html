@@ -1,0 +1,70 @@
+{% extends 'menu/base.html' %}
+{% load static %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="container">
+    <div style="padding-top:50px; text-align:center;">
+        <div class="row">
+            <div class="col-10">
+                <h1 class="text-left">Editar Menú</h1>
+            </div>
+            <div class="col-2">
+                <a href="{% url 'option_create' %}" class="btn btn-block btn-info" title="Agregar Opción"><i class="fa fa-plus"></i></a>
+            </div>
+        </div>
+    </div>
+
+    {% if 'OK' in request.GET %}
+    <div class="alert alert-success alert-block">Menu editado correctamente</div>
+    {% endif %}
+    <form id="create_menu" action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6">
+                    <label for="Date">Fecha</label>
+                    {{ form.date }}
+                </div>
+                <div class="col-6">
+                    <label for="Options">Opciones</label>
+                    {{ form.options }}
+                </div>
+            </div>
+            
+        </div>
+        <input type="submit" class="btn btn-primary" value="Guardar">
+    </form>
+
+
+</div>
+
+<script type="text/javascript"> 
+    $(document).ready(function(e){
+        $('.select2').select2({width: "100%"});
+        
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '<Ant',
+            nextText: 'Sig>',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+
+        $(".datepicker").datepicker({
+            dateFormat: 'dd/mm/yy',
+        });
+    });
+</script>
+
+{% endblock %}
