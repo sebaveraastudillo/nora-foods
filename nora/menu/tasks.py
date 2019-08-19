@@ -1,23 +1,26 @@
 from nora.celery import app
-from .models import Menu
 import requests
+import os
+from datetime import datetime
+from nora.settings import SLACK_CHANNEL, SLACK_TOKEN
 
-@app.task
-def send_menu(base_url, menu_id):
-    menu = Menu.objects.get(pk=menu_id)
+@app.task(bind=True, name='send_menu')
+def send_menu(self, message):
     
-    message = 'Hola!  Dejo el menú de hoy :)' + '\n'
-
-    i = 1
-    for option in menu.options.all():
-        message+=str(i) + ') ' + option.name+'\n'
-        i=i+1
-    
-    message+='Hagan su pedido en el link mas abajo. Tengan lindo día!' + '\n'
-    message+='<' + base_url + 'menu/' + str(menu.uuid) + '|' + 'https://nora.cornershop.io/menu/' + str(menu.uuid) + '>'
-
-    r = requests.post('https://slack.com/api/chat.postMessage', params={
-        "token": "xoxp-728764217476-729226154192-729227634720-738190b28f7a40c36bceb9ddc736ccec",
-        "channel": "CMF6X85TP",
+    response = requests.post('https://slack.com/api/chat.postMessage', params={
+        "token": SLACK_TOKEN,
+        "channel": SLACK_CHANNEL,
         "text": message
-    }) 
+    })
+
+    path = './data'
+    if response.ok:
+        if not os.path.exists(path):
+            os.makedirs(path)
+        slug = datetime.utcnow().strftime('%Y%m%dT%H%M%S%f')
+        with open(os.path.join(path, slug), 'w') as f:
+            f.write(response.text)
+    else:
+        raise ValueError('Unexpected response') 
+
+

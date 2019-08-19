@@ -3,7 +3,9 @@ from .models import Menu, Option, Order
 from django.contrib.auth.models import User
 
 class OptionForm(forms.ModelForm):
-
+    """
+    A class used to make a option form
+    """
     class Meta:
         model = Option
         fields = ['name']
@@ -16,7 +18,9 @@ class OptionForm(forms.ModelForm):
 
 
 class MenuForm(forms.ModelForm):
-
+    """
+    A class used to make a menu form
+    """
     class Meta:
         model = Menu
         fields = ('date', 'options')
@@ -34,6 +38,9 @@ class MenuForm(forms.ModelForm):
 
 
 class OrderForm(forms.ModelForm):
+    """
+    A class used to make a order form
+    """
     
     def __init__(self, *args, **kwargs):
         super(OrderForm, self).__init__(*args, **kwargs)
